@@ -4,7 +4,7 @@
 (function () {
   'use strict';
 
-  var BUILD = 'v3';       // shown on the Sales screen so you can tell what's running
+  var BUILD = 'v4';       // shown on the Sales screen so you can tell what's running
   var MENU = null;
   var cart = [];          // { key, itemId, name, sub, unit, qty }
   var activeCat = null;
