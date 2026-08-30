@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1, user-scalable=no">
+<title>Concession Menu</title>
+
+<meta name="theme-color" content="#0f1115">
+<meta name="color-scheme" content="dark">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Concessions">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="icon" href="icon-192.png">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ============ ORDER SCREEN ============ -->
+<div class="app">
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-name" id="standName">Concession Stand</span>
+      <span class="brand-sub" id="standSub"></span>
+    </div>
+    <button class="icon-btn" id="btnSales" type="button" aria-label="Sales totals">$</button>
+  </header>
+
+  <nav class="tabs" id="tabs"></nav>
+
+  <main class="grid" id="grid"></main>
+
+  <div class="dock">
+    <button class="dock-btn" id="btnReview" type="button" disabled>
+      <span class="dock-left">
+        <span class="dock-count" id="dockCount">No items yet</span>
+        <span class="dock-total" id="dockTotal">$0.00</span>
+      </span>
+      <span class="dock-cta">Review</span>
+    </button>
+  </div>
+</div>
+
+<!-- ============ ORDER / CART SCREEN ============ -->
+<section class="screen" id="orderScreen" aria-hidden="true">
+  <header class="screen-head">
+    <button class="link-btn" id="btnClear" type="button">Clear</button>
+    <h2>Order</h2>
+    <button class="link-btn strong" id="btnCloseOrder" type="button">Done</button>
+  </header>
+  <ul class="lines" id="lines"></ul>
+  <footer class="screen-foot">
+    <div class="totals" id="orderTotals"></div>
+    <button class="btn primary big" id="btnCheckout" type="button">Checkout</button>
+  </footer>
+</section>
+
+<!-- ============ CHECKOUT SCREEN ============ -->
+<section class="screen" id="checkoutScreen" aria-hidden="true">
+  <header class="screen-head">
+    <button class="link-btn" id="btnBackCheckout" type="button">‹ Back</button>
+    <h2>Checkout</h2>
+    <button class="link-btn" id="btnViewItems" type="button">Items</button>
+  </header>
+
+  <div class="checkout-body">
+    <div class="due">
+      <span class="due-label">Total due</span>
+      <strong class="due-amount" id="dueAmount">$0.00</strong>
+    </div>
+
+    <div class="tender">
+      <div class="tender-head">
+        <span class="tender-label">Cash received</span>
+        <button class="clear-cash" id="btnClearCash" type="button" hidden>Clear</button>
+      </div>
+      <strong class="amount-display" id="tenderDisplay">$0.00</strong>
+    </div>
+
+    <div class="quick-cash" id="quickCash"></div>
+    <div class="keypad" id="cashKeypad"></div>
+
+    <div class="change-box" id="changeBox">
+      <span class="change-label">Change due</span>
+      <strong class="change-amount" id="changeAmount">$0.00</strong>
+      <div class="change-break" id="changeBreak"></div>
+    </div>
+  </div>
+
+  <footer class="screen-foot">
+    <button class="btn primary big" id="btnComplete" type="button" disabled>Complete Sale</button>
+  </footer>
+</section>
+
+<!-- ============ SALES SCREEN ============ -->
+<section class="screen" id="salesScreen" aria-hidden="true">
+  <header class="screen-head">
+    <span class="link-btn spacer"></span>
+    <h2>Sales so far</h2>
+    <button class="link-btn strong" id="btnCloseSales" type="button">Done</button>
+  </header>
+  <div class="report" id="reportBody"></div>
+  <footer class="screen-foot">
+    <button class="btn danger big" id="btnResetSales" type="button">Reset totals</button>
+  </footer>
+</section>
+
+<!-- ============ BOTTOM SHEETS ============ -->
+<div class="sheet-wrap" id="optionSheet" hidden>
+  <div class="scrim" data-close></div>
+  <div class="sheet">
+    <h3 id="optionTitle">Choose</h3>
+    <div class="option-grid" id="optionGrid"></div>
+    <button class="btn ghost big" data-close type="button">Cancel</button>
+  </div>
+</div>
+
+<div class="sheet-wrap" id="priceSheet" hidden>
+  <div class="scrim" data-close></div>
+  <div class="sheet">
+    <h3 id="priceTitle">Enter price</h3>
+    <div class="amount-display" id="priceDisplay">$0.00</div>
+    <div class="keypad" id="priceKeypad"></div>
+    <div class="sheet-actions">
+      <button class="btn ghost big" data-close type="button">Cancel</button>
+      <button class="btn primary big" id="priceAdd" type="button">Add</button>
+    </div>
+  </div>
+</div>
+
+<div class="sheet-wrap" id="loadSheet" hidden>
+  <div class="scrim"></div>
+  <div class="sheet">
+    <h3>Couldn't load menu.json</h3>
+    <p class="hint" id="loadHint"></p>
+    <label class="btn primary big file-btn">
+      Pick menu.json
+      <input type="file" id="menuFile" accept=".json,application/json" hidden>
+    </label>
+  </div>
+</div>
+
+<div class="toast" id="toast" hidden></div>
+
+<script src="app.js"></script>
+</body>
+</html>
