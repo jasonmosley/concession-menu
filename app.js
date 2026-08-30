@@ -4,6 +4,7 @@
 (function () {
   'use strict';
 
+  var BUILD = 'v3';       // shown on the Sales screen so you can tell what's running
   var MENU = null;
   var cart = [];          // { key, itemId, name, sub, unit, qty }
   var activeCat = null;
@@ -496,8 +497,33 @@
       });
       body.appendChild(table);
     }
+
+    var diag = document.createElement('div');
+    diag.className = 'diag';
+    diag.textContent = diagnostics();
+    body.appendChild(diag);
+
     openScreen('salesScreen');
   };
+
+  // A one-line readout of what this device is actually reporting. Handy when
+  // the installed app and the browser disagree about how tall the screen is.
+  function diagnostics() {
+    var probe = document.createElement('div');
+    probe.style.cssText = 'position:fixed;left:0;bottom:0;width:0;height:0;visibility:hidden;' +
+      'padding-top:env(safe-area-inset-top);padding-bottom:env(safe-area-inset-bottom)';
+    document.body.appendChild(probe);
+    var cs = getComputedStyle(probe);
+    var top = Math.round(parseFloat(cs.paddingTop) || 0);
+    var bot = Math.round(parseFloat(cs.paddingBottom) || 0);
+    document.body.removeChild(probe);
+
+    var shell = Math.round($('grid').closest('.app').getBoundingClientRect().height);
+    var mode = window.matchMedia('(display-mode: standalone)').matches ? 'standalone'
+             : (navigator.standalone ? 'standalone-ios' : 'browser');
+    return BUILD + ' · ' + window.innerWidth + '×' + window.innerHeight +
+           ' · shell ' + shell + ' · insets ' + top + '/' + bot + ' · ' + mode;
+  }
 
   $('btnCloseSales').onclick = function () { closeScreen('salesScreen'); };
 

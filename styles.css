@@ -387,6 +387,14 @@ button, input { font: inherit; color: inherit; touch-action: manipulation; }
 }
 .report .stat-row { display: flex; justify-content: space-between; align-items: baseline; font-size: 16px; }
 .report .stat-row.grand { font-size: 26px; font-weight: 800; }
+.diag {
+  color: var(--muted);
+  font-size: 11px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  text-align: center;
+  padding-top: 10px;
+  word-break: break-word;
+}
 .report table { width: 100%; border-collapse: collapse; font-size: 15px; }
 .report td { padding: 10px 0; border-top: 1px solid var(--line); }
 .report td:last-child { text-align: right; font-variant-numeric: tabular-nums; font-weight: 700; }

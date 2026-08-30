@@ -2,7 +2,7 @@
    on first visit and served from cache after that.
    Bump CACHE whenever you want every device to drop its old copy. */
 
-var CACHE = 'concession-v2';
+var CACHE = 'concession-v3';
 var ASSETS = [
   './',
   './index.html',
