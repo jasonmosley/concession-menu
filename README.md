@@ -24,8 +24,8 @@ full-screen and offline in the stand.
   still owed.
 - **Odd-priced items.** Candy is priced "as marked", so tapping it opens a keypad
   to type that item's price.
-- **Optional choices.** An item can ask a follow-up question — Italian Ice asks
-  the flavor — and the answer prints on the order line.
+- **Optional choices.** An item can ask a follow-up question before it's added,
+  and the answer prints on the order line. Off by default — every item is one tap.
 - **End-of-night totals.** The **$** button shows orders taken, cash in, and a
   count of every item sold.
 - **Works with no signal.** The whole app caches on the phone the first time it
@@ -93,7 +93,7 @@ picks up the change the next time it opens with a signal. No code involved.
 | `price` | Dollars. `2.5` means $2.50. |
 | `emoji` | The picture on the button. Optional. |
 | `note` | Small gray line under the price. Optional. |
-| `options` | Follow-up choices, asked before the item is added. Optional — only Italian Ice uses it. Delete the line to make an item a single tap. |
+| `options` | Follow-up choices, asked before the item is added, with the answer printed on the order line. Optional, and nothing uses it right now — add it to any item that needs a follow-up question. |
 | `openPrice` | `true` means "ask me for the price", for anything priced as marked. |
 
 Options can carry their own price when the choices differ:

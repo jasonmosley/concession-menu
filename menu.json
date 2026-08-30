@@ -115,12 +115,7 @@
           "id": "italian-ice",
           "name": "Italian Ice",
           "price": 1,
-          "emoji": "🧊",
-          "options": [
-            "Cherry",
-            "Lemon",
-            "Strawberry"
-          ]
+          "emoji": "🧊"
         },
         {
           "id": "ice-cream-sandwich",
