@@ -22,13 +22,13 @@
 
 html {
   height: 100%;
+  background: var(--bg);
   -webkit-text-size-adjust: 100%;
 }
 
 body {
   margin: 0;
-  height: 100vh;
-  height: 100dvh;
+  height: 100%;
   overflow: hidden;
   background: var(--bg);
   color: var(--text);
@@ -40,10 +40,10 @@ button, input { font: inherit; color: inherit; touch-action: manipulation; }
 
 /* ---------------- order screen ---------------- */
 .app {
+  position: fixed;
+  inset: 0;
   display: flex;
   flex-direction: column;
-  height: 100vh;
-  height: 100dvh;
 }
 
 .topbar {
@@ -156,7 +156,7 @@ button, input { font: inherit; color: inherit; touch-action: manipulation; }
 .dock {
   flex: none;
   padding: 8px 12px;
-  padding-bottom: calc(8px + var(--safe-b));
+  padding-bottom: max(8px, var(--safe-b));
   background: var(--panel);
   border-top: 1px solid var(--line);
 }
@@ -189,8 +189,6 @@ button, input { font: inherit; color: inherit; touch-action: manipulation; }
   z-index: 20;
   display: flex;
   flex-direction: column;
-  height: 100vh;
-  height: 100dvh;
   background: var(--bg);
   transform: translateY(100%);
   visibility: hidden;
@@ -231,7 +229,7 @@ button, input { font: inherit; color: inherit; touch-action: manipulation; }
 .screen-foot {
   flex: none;
   padding: 12px 14px;
-  padding-bottom: calc(12px + var(--safe-b));
+  padding-bottom: max(12px, var(--safe-b));
   background: var(--panel);
   border-top: 1px solid var(--line);
 }
@@ -407,7 +405,7 @@ button, input { font: inherit; color: inherit; touch-action: manipulation; }
   border-top: 1px solid var(--line);
   border-radius: 20px 20px 0 0;
   padding: 18px 14px;
-  padding-bottom: calc(18px + var(--safe-b));
+  padding-bottom: max(18px, var(--safe-b));
   display: grid;
   gap: 12px;
 }
@@ -422,7 +420,7 @@ button, input { font: inherit; color: inherit; touch-action: manipulation; }
 .toast {
   position: fixed;
   left: 12px; right: 12px;
-  bottom: calc(20px + var(--safe-b));
+  bottom: max(20px, var(--safe-b));
   z-index: 60;
   background: var(--ok);
   color: #04210f;
@@ -436,24 +434,22 @@ button, input { font: inherit; color: inherit; touch-action: manipulation; }
 .toast[hidden] { display: none; }
 
 /* ---------------- tablets & desktop ---------------- */
+/* #orderScreen is a sibling of .app, not a child, so it can't be placed as a
+   grid cell. On wide screens .app reserves a strip on the right and the order
+   panel is pinned into it. */
 @media (min-width: 820px) {
-  .app { display: grid; grid-template-columns: 1fr 360px; grid-template-rows: auto auto 1fr; }
-  .topbar { grid-column: 1 / -1; }
-  .tabs { grid-column: 1; }
-  .grid { grid-column: 1; grid-row: 3; }
+  .app { padding-right: 360px; }
   .dock { display: none; }
 
   #orderScreen {
-    position: static;
-    grid-column: 2; grid-row: 2 / -1;
+    left: auto;
+    width: 360px;
     transform: none;
     visibility: visible;
-    height: auto;
-    min-height: 0;
-    border-left: 1px solid var(--line);
     background: var(--panel);
+    border-left: 1px solid var(--line);
   }
-  #orderScreen .screen-head { padding-top: 8px; }
+  #orderScreen .screen-head { padding-top: calc(8px + var(--safe-t)); }
   #btnCloseOrder { display: none; }
 
   #checkoutScreen, #salesScreen {

@@ -544,8 +544,22 @@
   });
 
   if ('serviceWorker' in navigator) {
+    // Whether this page was already under a worker's control. On a first-ever
+    // visit it isn't, and the install that follows must not trigger a reload.
+    var hadWorker = !!navigator.serviceWorker.controller;
+    var reloading = false;
+
     window.addEventListener('load', function () {
       navigator.serviceWorker.register('sw.js').catch(function () {});
+    });
+
+    // A new version finished installing. Pick it up now rather than making
+    // someone launch the app twice — but never yank the page out from under
+    // an order that's half rung up.
+    navigator.serviceWorker.addEventListener('controllerchange', function () {
+      if (reloading || !hadWorker || cart.length) return;
+      reloading = true;
+      window.location.reload();
     });
   }
 
