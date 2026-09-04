@@ -26,6 +26,12 @@
           "price": 11,
           "emoji": "🍗",
           "note": "Chicken Fingers, Fries, Drink"
+        },
+        {
+          "id": "pierogies",
+          "name": "Pierogies",
+          "price": 4,
+          "emoji": "🥟"
         }
       ]
     },
@@ -102,7 +108,7 @@
         {
           "id": "popcorn",
           "name": "Popcorn",
-          "price": 3,
+          "price": 4,
           "emoji": "🍿"
         },
         {
